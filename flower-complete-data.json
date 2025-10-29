@@ -1,0 +1,78 @@
+{
+  "positions": {
+    "rose": {
+      "top": "60.2588%",
+      "left": "62.5776%"
+    },
+    "lily": {
+      "top": "41.6355%",
+      "left": "21.7986%"
+    },
+    "tulip": {
+      "top": "63.5734%",
+      "left": "35.401%"
+    },
+    "peony": {
+      "top": "36.9502%",
+      "left": "48.8501%"
+    },
+    "orchid": {
+      "top": "54.0005%",
+      "left": "34.1124%"
+    },
+    "sunflower": {
+      "top": "44.4944%",
+      "left": "72.8889%"
+    },
+    "hydrangea": {
+      "top": "47.9535%",
+      "left": "3.04679%"
+    },
+    "daisy": {
+      "top": "67.841%",
+      "left": "2.48624%"
+    }
+  },
+  "flowers": {
+    "rose": {
+      "name": "Hyacinthus orientalis",
+      "displayName": "白風信子",
+      "description": "花語：純潔的愛、思念與祝福。\n一朵朵細小的白花，帶著溫柔的香氣，\n像遠方寄來的問候，靜靜傳遞心意。"
+    },
+    "lily": {
+      "name": "Trachelium",
+      "displayName": "淺紫翠珠",
+      "description": "花語：守護與柔情。\n細小的花密集成簇，\n象徵家的聯繫與不離不棄的陪伴。"
+    },
+    "tulip": {
+      "name": "Scabiosa",
+      "displayName": "白松蟲花",
+      "description": "花語：細膩的愛與體貼的思念。\n柔軟的花心像一顆溫暖的心，\n靜靜守護著家，也守護著想念。"
+    },
+    "peony": {
+      "name": "Spiraea thunbergii",
+      "displayName": "雪柳",
+      "description": "花語：思念與祝福。\n纖細的枝條開滿白花，\n象徵潔淨的情感與新一年的希望。"
+    },
+    "orchid": {
+      "name": "Ranunculus asiaticus",
+      "displayName": "白洋牡丹",
+      "description": "花語：光彩奪目的美麗。\n層層疊疊的花瓣，是歲月與溫柔的形狀，\n像媽媽的笑容，永遠溫暖明亮。"
+    },
+    "sunflower": {
+      "name": "Delphinium",
+      "displayName": "淡藍小飛燕",
+      "description": "花語：希望與開闊。\n藍色的花莖筆直挺立，\n如同祝願——願日子平靜、心情寬闊。"
+    },
+    "hydrangea": {
+      "name": "Campanula",
+      "displayName": "白風鈴桔梗",
+      "description": "花語：溫柔的祝福、誠摯的心意。\n鈴鐺形花朵在光下微微顫動，\n像一聲輕響的「謝謝你」，\n說著孩子永遠的感激。"
+    },
+    "daisy": {
+      "name": "Pennisetum",
+      "displayName": "噴泉草",
+      "description": "花語：柔軟與自由。\n輕盈的穗隨風搖曳，\n像時光裡不變的溫柔節奏。"
+    }
+  }
+}
