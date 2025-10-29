@@ -1,0 +1,485 @@
+/* Import elegant fonts with Traditional Chinese support */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Noto+Serif+TC:wght@300;400;600&family=Noto+Sans+TC:wght@300;400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans TC', 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f0eb;
+    margin: 0;
+    padding: 0;
+}
+
+.background-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    background-image: url('flower.jpg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(245, 240, 235, 0.2));
+    z-index: 1;
+}
+
+header {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    text-align: center;
+    padding: 1.5rem 2rem 1rem;
+    color: #5a4a42;
+}
+
+header h1 {
+    font-family: 'Cormorant Garamond', 'Noto Serif TC', serif;
+    font-size: 5rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9);
+    margin-bottom: 8rem;
+    color: #6b5b54;
+}
+
+.subtitle {
+    font-family: 'Noto Serif TC', 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.9;
+    letter-spacing: 1px;
+    color: #8a7a72;
+    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.8);
+    max-width: 800px;
+    margin: 0 auto;
+    white-space: pre-line;
+}
+
+.flowers-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+}
+
+.flower-btn {
+    position: absolute;
+    background: rgba(255, 250, 245, 0.2);
+    border: 2px solid rgba(245, 222, 210, 0.6);
+    border-radius: 50px;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(139, 119, 101, 0.15);
+    user-select: none;
+    touch-action: none;
+}
+
+.flower-btn:hover {
+    background: rgba(255, 245, 238, 0.65);
+    border-color: rgba(210, 180, 160, 0.9);
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 6px 25px rgba(139, 119, 101, 0.35);
+}
+
+.flower-btn.dragging {
+    cursor: move;
+    opacity: 0.8;
+    transform: scale(1.05);
+    z-index: 1000;
+}
+
+.flower-btn.edit-mode {
+    cursor: move;
+    border: 2px dashed rgba(210, 180, 160, 1);
+}
+
+.flower-btn.edit-mode::before {
+    content: '✥';
+    position: absolute;
+    left: 0.5rem;
+    font-size: 0.8rem;
+    color: #8a7a72;
+}
+
+.btn-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #6b5b54;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* Credit */
+.credit {
+    position: fixed;
+    bottom: 0.5rem;
+    right: 1rem;
+    z-index: 3000;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    font-style: italic;
+    color: rgba(107, 91, 84, 0.5);
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.5px;
+}
+
+/* Edit Mode Controls - Hidden but preserved for future use */
+.edit-controls {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 3000;
+    display: none; /* Hidden from users */
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.edit-mode-btn,
+.export-btn {
+    padding: 1rem 1.5rem;
+    border: 2px solid rgba(107, 91, 84, 0.6);
+    border-radius: 10px;
+    background: rgba(255, 252, 249, 0.95);
+    color: #6b5b54;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(107, 91, 84, 0.3);
+    transition: all 0.3s ease;
+}
+
+.edit-mode-btn:hover,
+.export-btn:hover {
+    background: rgba(255, 245, 238, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(107, 91, 84, 0.4);
+}
+
+.edit-mode-btn.active {
+    background: rgba(107, 91, 84, 0.9);
+    color: white;
+    border-color: rgba(107, 91, 84, 1);
+}
+
+/* Edit Modal Styles */
+.edit-modal-content {
+    max-width: 600px;
+}
+
+.edit-modal-content h2 {
+    font-family: 'Noto Serif TC', 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #6b5b54;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-family: 'Noto Sans TC', 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #6b5b54;
+}
+
+.form-input,
+.form-textarea {
+    font-family: 'Noto Sans TC', 'Montserrat', sans-serif;
+    font-size: 1rem;
+    padding: 0.75rem;
+    border: 2px solid rgba(210, 180, 160, 0.6);
+    border-radius: 8px;
+    background: rgba(255, 252, 249, 0.9);
+    color: #5a4a42;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: rgba(107, 91, 84, 0.8);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.6;
+}
+
+.save-edit-btn {
+    padding: 1rem 2rem;
+    border: 2px solid rgba(107, 91, 84, 0.6);
+    border-radius: 10px;
+    background: rgba(107, 91, 84, 0.9);
+    color: white;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.save-edit-btn:hover {
+    background: rgba(107, 91, 84, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(107, 91, 84, 0.4);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(90, 74, 66, 0.5);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 252, 249, 0.98), rgba(255, 247, 242, 0.95));
+    margin: 10% auto;
+    padding: 3rem 3rem 2.5rem;
+    border: 3px solid rgba(210, 180, 160, 0.6);
+    border-radius: 20px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 10px 50px rgba(107, 91, 84, 0.3);
+    animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-btn {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    color: #8a7a72;
+    font-size: 2rem;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #5a4a42;
+    transform: rotate(90deg);
+}
+
+.modal-content h2 {
+    font-family: 'Noto Serif TC', 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #6b5b54;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    border-bottom: 2px solid rgba(210, 180, 160, 0.4);
+    padding-bottom: 1rem;
+}
+
+.modal-content p {
+    font-family: 'Noto Sans TC', 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #5a4a42;
+    font-weight: 300;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        align-items: flex-start;
+    }
+
+    .background-container {
+        min-height: 100vh;
+        background-size: cover;
+        background-position: center 10%;
+    }
+
+    header {
+        padding: 1rem 1.5rem 0.8rem;
+        top: 5%;
+    }
+
+    header h1 {
+        font-size: 2.8rem;
+        margin-bottom: 3rem;
+        letter-spacing: 1px;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        line-height: 1.8;
+        padding: 0 1rem;
+        max-width: 90%;
+        margin-top: 2rem;
+    }
+
+    .flower-btn {
+        padding: 0.6rem 1.2rem;
+    }
+
+    .btn-text {
+        font-size: 1rem;
+    }
+
+    .modal-content {
+        width: 90%;
+        padding: 2rem 1.5rem;
+        margin: 20% auto;
+    }
+
+    .modal-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .modal-content p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .close-btn {
+        font-size: 1.8rem;
+        right: 1rem;
+        top: 1rem;
+    }
+}
+
+/* iPhone specific optimizations */
+@media (max-width: 430px) {
+    .background-container {
+        background-position: center 5%;
+    }
+
+    header {
+        padding: 0.8rem 1rem 0.5rem;
+        top: 8%;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+        line-height: 1.7;
+        letter-spacing: 0.5px;
+        margin-top: 2rem;
+    }
+
+    .flower-btn {
+        padding: 0.5rem 1rem;
+        border-width: 1.5px;
+    }
+
+    .btn-text {
+        font-size: 0.9rem;
+    }
+
+    .modal-content {
+        width: 92%;
+        padding: 1.8rem 1.2rem;
+        margin: 25% auto;
+        border-width: 2px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.8rem;
+    }
+
+    .modal-content p {
+        font-size: 0.95rem;
+    }
+
+    .close-btn {
+        font-size: 1.6rem;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 375px) {
+    header h1 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        margin-top: 1.5rem;
+    }
+
+    .flower-btn {
+        padding: 0.4rem 0.8rem;
+    }
+
+    .btn-text {
+        font-size: 0.85rem;
+    }
+}

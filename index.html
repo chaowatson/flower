@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>A Floral Celebration for Sandy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-container" id="bgContainer">
+        <div class="overlay"></div>
+
+        <header>
+            <h1>Happy Birthday, Sandy</h1>
+            <p class="subtitle">「這一籃花裡，有思念的香氣、溫柔的光，
+還有我對妳永遠的愛與祝福。」
+— 在美國讀書的兒子 Watson
+            10.28.2025</p>
+        </header>
+
+        <div class="flowers-container">
+            <!-- Flower buttons will be positioned on the image -->
+            <button class="flower-btn" data-flower="rose" style="top: 60.2588%; left: 62.5776%;">
+                <span class="btn-text">白風信子</span>
+            </button>
+
+            <button class="flower-btn" data-flower="lily" style="top: 41.6355%; left: 21.7986%;">
+                <span class="btn-text">淺紫翠珠</span>
+            </button>
+
+            <button class="flower-btn" data-flower="tulip" style="top: 63.5734%; left: 35.401%;">
+                <span class="btn-text">白松蟲花</span>
+            </button>
+
+            <button class="flower-btn" data-flower="peony" style="top: 36.9502%; left: 48.8501%;">
+                <span class="btn-text">雪柳</span>
+            </button>
+
+            <button class="flower-btn" data-flower="orchid" style="top: 54.0005%; left: 34.1124%;">
+                <span class="btn-text">白洋牡丹</span>
+            </button>
+
+            <button class="flower-btn" data-flower="sunflower" style="top: 44.4944%; left: 68%;">
+                <span class="btn-text">淡藍小飛燕</span>
+            </button>
+
+            <button class="flower-btn" data-flower="hydrangea" style="top: 47.9535%; left: 3.04679%;">
+                <span class="btn-text">白風鈴桔梗</span>
+            </button>
+
+            <button class="flower-btn" data-flower="daisy" style="top: 67.841%; left: 2.48624%;">
+                <span class="btn-text">噴泉草</span>
+            </button>
+        </div>
+
+        <!-- Credit -->
+        <div class="credit">Made by Watson</div>
+
+        <!-- Edit Mode Controls - Hidden but preserved for future editing -->
+        <div class="edit-controls">
+            <button id="toggleEditMode" class="edit-mode-btn">🎨 Edit Mode</button>
+            <button id="exportPositions" class="export-btn" style="display: none;">💾 Save All</button>
+        </div>
+
+        <!-- Popup modal for flower descriptions -->
+        <div class="modal" id="flowerModal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2 id="flowerName"></h2>
+                <p id="flowerDescription"></p>
+            </div>
+        </div>
+
+        <!-- Edit modal for editing flower details - Hidden but preserved -->
+        <div class="modal" id="editFlowerModal" style="display: none;">
+            <div class="modal-content edit-modal-content">
+                <span class="close-btn" id="closeEditModal">&times;</span>
+                <h2>Edit Flower Details</h2>
+                <div class="edit-form">
+                    <div class="form-group">
+                        <label for="editFlowerName">Flower Name (English):</label>
+                        <input type="text" id="editFlowerName" class="form-input" placeholder="e.g., Rose">
+                    </div>
+                    <div class="form-group">
+                        <label for="editFlowerDisplayName">Display Name (可中文):</label>
+                        <input type="text" id="editFlowerDisplayName" class="form-input" placeholder="e.g., 玫瑰 or Rose">
+                    </div>
+                    <div class="form-group">
+                        <label for="editFlowerDescription">Description:</label>
+                        <textarea id="editFlowerDescription" class="form-textarea" rows="5" placeholder="Enter flower description..."></textarea>
+                    </div>
+                    <button id="saveFlowerEdit" class="save-edit-btn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
